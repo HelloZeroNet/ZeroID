@@ -1,0 +1,41 @@
+{
+ "address": "1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz", 
+ "background-color": "#3F51B5", 
+ "description": "Sample trusted authorization provider", 
+ "domain": "zeroid.bit", 
+ "files": {
+  "css/all.css": {
+   "sha512": "1a991c7685724a6de3a9c6a6097fcfa830704edd61c90ba84b3f70818569c53a", 
+   "size": 74387
+  }, 
+  "data/users.json": {
+   "sha512": "3a7225f1f51d88fb8c8652ed62fae8a373080e6ecf29ec4161320ad9cad47412", 
+   "size": 155475
+  }, 
+  "img/loading.gif": {
+   "sha512": "8a42b98962faea74618113166886be488c09dad10ca47fe97005edc5fb40cc00", 
+   "size": 723
+  }, 
+  "index.html": {
+   "sha512": "04b36f24ac215f93d41e80beb3afd36f65e6fe0a6a3ce2c6b15a2fc9eddb55ec", 
+   "size": 1720
+  }, 
+  "js/all.js": {
+   "sha512": "b2c80c4b7007c029fabe2589a0f67022ab1d11def2243038008285eb30814cdf", 
+   "size": 387081
+  }
+ }, 
+ "ignore": "(js|css)/(?!all.(js|css))", 
+ "modified": 1446390093.899864, 
+ "sign": [
+  13910339930870073633351684287576213050654508589057428027162330155350179627162, 
+  47121317756782012449424647705519549403329751201008868898094909491176985160851
+ ], 
+ "signers_sign": "G7d9tTFjHbptCSR/TDr2mA1OILLhWMtVGvKZcLIwW56ut0V+kPDgrivp+hZ7/C9IUOQ6dQzVVHKJK5XBSqm+QPw=", 
+ "signs": {
+  "1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz": "G0n5mF+zKqtYgOyWb++EsBtDVBmW67qVwpOsoEM8ts2hDtwerI65tD36NHAZSeV1jW3LKnD6mfgz5Y+SyDA9QUU="
+ }, 
+ "signs_required": 1, 
+ "title": "ZeroID", 
+ "zeronet_version": "0.3.2"
+}

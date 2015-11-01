@@ -1,0 +1,73 @@
+body { background-color: #3F51B5; /*150A45*/; margin: 0px; padding: 0px; font-family: Roboto; color: white }
+a { text-decoration: none; color: white }
+
+code { background-color: rgba(0,0,0,0.2); padding: 3px 7px; font-size: 13px }
+
+h1 { font-family: 'Text Me One'; margin: 0px; padding: 0px; font-size: 100px; font-weight: normal; line-height: 70px }
+h2 { font-weight: 300; margin: 20px 0px; font-size: 20px; line-height: 24px }
+h3 { font-weight: 300; margin: 30px 0px; opacity: 0.6; font-size: 18px; line-height: 24px }
+h4 { font-weight: 300; margin: 0px 0px; opacity: 1; font-size: 14px; line-height: 24px }
+
+/* Input */
+input.text, textarea {
+	line-height: 1.5em; width: 250px; padding: 10px; font-family: 'Roboto', sans-serif; font-size: 16px;
+	transition: border 0.3s; border: 2px solid #eee; box-sizing: border-box;
+}
+textarea { overflow-y: auto }
+input.text:focus, textarea:focus { border-color: #5FC0EA; outline: none; background-color: white }
+
+/* Button */
+.button {
+	background-color: #FFDC00; color: black; padding: 10px 20px; display: inline-block; background-position: left center;
+	border-radius: 2px; border-bottom: 2px solid #E8BE29; transition: all 0.5s ease-out
+}
+.button:hover { border-color: white; border-bottom: 2px solid #BD960C; transition: none; background-color: #FDEB07 }
+.button:active { position: relative; top: 1px }
+.button.loading {
+	color: rgba(0,0,0,0); background: #999 url(../img/loading.gif) no-repeat center center;
+	transition: all 0.5s ease-out ; pointer-events: none; border-bottom: 2px solid #666
+}
+.button.disabled { color: #DDD; background-color: #999;  pointer-events: none; border-bottom: 2px solid #666 }
+
+.particles { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 0.3s all }
+
+.ui { position: absolute; width: 500px; top: 50%; left: 50%; z-index: 999; transform: translatex(-50%) translatey(-50%); text-align: center; perspective: 500px }
+.ui.flipped .panel-front { transform: rotateY(180deg) }
+.ui.flipped .panel-back { transform: rotateY(0deg) }
+
+.panel { width: 100%; backface-visibility: hidden; transition: 0.9s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+.panel-intro { position: absolute; margin-top: 40px }
+.panel-intro h1 { border: 4px solid white; padding: 20px; display: inline-block; }
+.panel-intro .text-gotauth, .panel-intro .text-noauth { height: 0px; transition: all 0.3s; overflow: hidden; opacity: 0; pointer-events: none }
+.panel-intro.gotauth .text-gotauth { height: auto; opacity: 1; pointer-events: auto }
+.panel-intro .text-gotauth h3 { opacity: 1 }
+.panel-intro .current-auth {
+	display: inline-block; background-color: FFDC00; color: rgba(142, 87, 5, 0.8); padding: 4px 8px;
+	font-size: 15px; font-weight: bold; min-width: 293px; opacity: 1; margin: 0px; margin-top: 30px;
+}
+.panel-intro .current-auth b { color: #8E5705 }
+.panel-intro .please-update { display: none; margin-top: -10px; text-transform: uppercase }
+
+.panel-intro.noauth .text-noauth { height: auto; opacity: 1; pointer-events: auto }
+
+.panel-input { transform: rotateY(-180deg) }
+.panel-input h1 { font-size: 67px; letter-spacing: -4px; line-height: 80px; margin-bottom: 40px }
+.panel-input h2 { margin-bottom: 40px }
+.panel-input h2 .text { margin-left: 20px }
+.panel-input .togglesend { font-size: 13px; font-weight: bold; padding-top: 14px; display: inline-block; border-bottom: 2px solid rgba(255,255,255,0.2); transparent; transition: all 0.3s }
+.panel-input .togglesend:hover { border-bottom: 2px solid #eee; transition: none }
+
+.username-status {
+	display: inline-block; color: #EEE; margin-left: -100px; position: absolute; width: 90px; transition: all 0.1s ease-out;
+	text-align: right; font-size: 14px; font-weight: bold; vertical-align: middle; line-height: 50px;
+}
+.username-status.error { color: #FF4136 }
+.username-status.ok { color: #2ECC40; }
+.username-status .title { vertical-align: top }
+.username-status .dot { font-size: 30px; transition: all 0.3s; margin-left: 4px; display: inline-block; margin-top: 1px }
+
+
+.send-direct { transform: scale(0.5); opacity: 0; transition: all 0.3s }
+.send-direct.active { transform: scale(1); opacity: 1 }
+.send-bitmessage { position: absolute; display: none; transition: all 0.3s; transform: scale(1.5); opacity: 0; width: 100% }
+.send-bitmessage.active { transform: scale(1); opacity: 1 }
