@@ -73,7 +73,7 @@ class ZeroID extends ZeroFrame
 		$(".username").attr("readonly", "true")
 		@setRequestPercent(10)
 
-		$.post "http://demo.zeronet.io/ZeroID/request.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "width": $(".ui h1").width() }, (res) =>
+		$.post "https://demo.zeronet.io/ZeroID/request.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "width": $(".ui h1").width() }, (res) =>
 			@setRequestPercent(20)
 			if res[0] == "{" # Valid response, solve task
 				res = JSON.parse(res)
@@ -96,12 +96,12 @@ class ZeroID extends ZeroFrame
 		@setRequestPercent(30)
 		# Sending back solution...
 
-		$.post "http://demo.zeronet.io/ZeroID/solution.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "work_id": task.work_id, "work_solution": solution }, (res) =>
+		$.post "https://demo.zeronet.io/ZeroID/solution.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "work_id": task.work_id, "work_solution": solution }, (res) =>
 			if res == "OK"
 				@setRequestPercent(80) # Solution ok, site change published, waiting for update
 			else
 				@cmd "wrapperNotification", ["error", "Solve error: #{res}"]
-				@endRequest()	
+				@endRequest()
 		.fail (err) =>
 			@cmd "wrapperNotification", ["error", "Error while during sending solution: #{err.statusText}<br>#{err.responseText}"]
 			@endRequest()
@@ -139,7 +139,7 @@ class ZeroID extends ZeroFrame
 					break
 			if not gotauth
 				$(".panel-intro").addClass("noauth")
-					
+
 
 
 	setCert: (auth_type, user_name, cert_sign) ->
@@ -150,6 +150,6 @@ class ZeroID extends ZeroFrame
 			$(".ui").removeClass("flipped")
 			if res.error
 				@cmd "wrapperNotification", ["error", "#{res.error}"]
-		 
 
-window.Page = new ZeroID() 
+
+window.Page = new ZeroID()

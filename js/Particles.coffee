@@ -1,6 +1,6 @@
 class Particles
 	constructor: ->
-		@renderer = PIXI.autoDetectRenderer(1024, 768, {backgroundColor: 0x3F51B5, antialias: true})
+		@renderer = PIXI.autoDetectRenderer(1024, 768, {backgroundColor: 0x3F51B5, antialias: true, failIfMajorPerformanceCaveat: true})
 		@renderer.view.className = "particles"
 		@renderer.autoResize = true
 		@renderer.view.style["transform"] = "translatez(0)"
@@ -22,9 +22,12 @@ class Particles
 		@bg = null
 
 		@running = true
+		@disabled = false
 		@speed = 1
+		@fps_timer = null
+		@fps = 0
 
-		
+
 		###
 		@bg = new PIXI.Graphics()
 		@bg.beginFill(0x150A45, 1)
@@ -52,7 +55,7 @@ class Particles
 		ctx = canvas.getContext('2d')
 		ctx.lineJoin = "round"
 		ctx.lineWidth = 60
-		ctx.shadowBlur = 40 
+		ctx.shadowBlur = 40
 		ctx.shadowColor = ctx.fillStyle = ctx.strokeStyle = "#FFF"
 		for i in [0..5]
 			ctx.beginPath();
@@ -78,7 +81,7 @@ class Particles
 		@bg.addChild(mask)
 		@bg.position.x = @width/2-(@bg.width/2)
 		@bg.position.y = @height/2-(@bg.height/2)-10
-		
+
 		# Add to blured container
 		@blured.addChild(@bg)
 		@blured.addChild(@output_sprite)
@@ -118,6 +121,7 @@ class Particles
 
 
 	update: =>
+		@fps += 1
 		lines = @lines
 		lines.clear()
 		for peer in @peers
@@ -136,14 +140,14 @@ class Particles
 
 			# Check if out of bounds
 			if peer_x > @width+100 or peer_x < -100
-				if peer.speed.x > 0 
+				if peer.speed.x > 0
 					peer.position.x = -100
 				else
 					peer.position.x = @width+100
 				peer.position.y = Math.random()*@height
 			if peer_y > @height+100 or peer_y < -100
 				peer.position.x = Math.random()*@width
-				if peer.speed.y > 0 
+				if peer.speed.y > 0
 					peer.position.y = -100
 				else
 					peer.position.y = @height+100
@@ -162,7 +166,7 @@ class Particles
 		if not @running then @speed -= 0.01
 		else if @speed < 1 then @speed = Math.min(1, @speed+0.01)
 		if @speed > 0.01 then requestAnimationFrame(@update)
-		
+
 
 
 	resize: =>
@@ -177,20 +181,33 @@ class Particles
 
 
 	start: ->
+		if @disabled
+			return false
 		@running = true
 		@speed = Math.max(0.02, @speed)
+		clearInterval @fps_timer
+		console.log "Start"
+		@fps_timer = setInterval ( =>
+			if @fps < 25*3 and @fps > 0
+				@disabled = true
+				@speed = 0
+				@stop()
+				console.log "Low FPS: #{@fps/3}, Disabling animation..."
+			@fps = 0
+		), 3000
 		@update()
 
 	stop: ->
+		clearInterval @fps_timer
 		@running = false
-		
+
 
 init = ->
 	window.particles = new Particles()
 	particles.resize()
 	particles.createBlur()
 	particles.addPeers()
-	particles.update()
+	particles.start()
 	$(".particles").css "opacity", 1
 	$(window).on "resize", particles.resize
 

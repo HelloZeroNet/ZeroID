@@ -487,7 +487,8 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       this.update = __bind(this.update, this);
       this.renderer = PIXI.autoDetectRenderer(1024, 768, {
         backgroundColor: 0x3F51B5,
-        antialias: true
+        antialias: true,
+        failIfMajorPerformanceCaveat: true
       });
       this.renderer.view.className = "particles";
       this.renderer.autoResize = true;
@@ -506,7 +507,10 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       this.stage = new PIXI.Container();
       this.bg = null;
       this.running = true;
+      this.disabled = false;
       this.speed = 1;
+      this.fps_timer = null;
+      this.fps = 0;
 
       /*
       		@bg = new PIXI.Graphics()
@@ -594,6 +598,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 
     Particles.prototype.update = function() {
       var distance, lines, other, peer, peer_x, peer_y, _i, _j, _len, _len1, _ref, _ref1;
+      this.fps += 1;
       lines = this.lines;
       lines.clear();
       _ref = this.peers;
@@ -660,12 +665,29 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     };
 
     Particles.prototype.start = function() {
+      if (this.disabled) {
+        return false;
+      }
       this.running = true;
       this.speed = Math.max(0.02, this.speed);
+      clearInterval(this.fps_timer);
+      console.log("Start");
+      this.fps_timer = setInterval(((function(_this) {
+        return function() {
+          if (_this.fps < 25 * 3 && _this.fps > 0) {
+            _this.disabled = true;
+            _this.speed = 0;
+            _this.stop();
+            console.log("Low FPS: " + (_this.fps / 3) + ", Disabling animation...");
+          }
+          return _this.fps = 0;
+        };
+      })(this)), 3000);
       return this.update();
     };
 
     Particles.prototype.stop = function() {
+      clearInterval(this.fps_timer);
       return this.running = false;
     };
 
@@ -678,7 +700,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     particles.resize();
     particles.createBlur();
     particles.addPeers();
-    particles.update();
+    particles.start();
     $(".particles").css("opacity", 1);
     return $(window).on("resize", particles.resize);
   };
@@ -806,7 +828,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       $(".button-send").addClass("loading");
       $(".username").attr("readonly", "true");
       this.setRequestPercent(10);
-      return $.post("http://demo.zeronet.io/ZeroID/request.php", {
+      return $.post("https://demo.zeronet.io/ZeroID/request.php", {
         "auth_address": this.auth_address,
         "user_name": $(".username").val(),
         "width": $(".ui h1").width()
@@ -840,7 +862,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
         return false;
       }
       this.setRequestPercent(30);
-      return $.post("http://demo.zeronet.io/ZeroID/solution.php", {
+      return $.post("https://demo.zeronet.io/ZeroID/solution.php", {
         "auth_address": this.auth_address,
         "user_name": $(".username").val(),
         "work_id": task.work_id,
