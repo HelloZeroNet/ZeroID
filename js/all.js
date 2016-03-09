@@ -808,7 +808,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       if (cmd === "setSiteInfo") {
         this.log(message.params.event, message);
         this.site_info = message.params;
-        if (((_ref = message.params.event) != null ? _ref[0] : void 0) === "file_done" && ((_ref1 = message.params.event) != null ? _ref1[1] : void 0) === "data/users.json") {
+        if (((_ref = message.params.event) != null ? _ref[0] : void 0) === "file_done" && ((_ref1 = message.params.event) != null ? _ref1[1].indexOf("data/users") : void 0) === 0) {
           this.setRequestPercent(100);
           this.endRequest();
           return this.reloadUsers();
@@ -910,24 +910,31 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     };
 
     ZeroID.prototype.reloadUsers = function() {
-      return this.cmd("fileGet", "data/users.json", (function(_this) {
+      return this.cmd("fileGet", "data/users_archive.json", (function(_this) {
         return function(res) {
-          var auth_address, auth_type, cert, cert_sign, gotauth, user_name, _ref, _ref1;
           _this.users = JSON.parse(res)["users"];
-          gotauth = false;
-          _ref = _this.users;
-          for (user_name in _ref) {
-            cert = _ref[user_name];
-            _ref1 = cert.split(","), auth_type = _ref1[0], auth_address = _ref1[1], cert_sign = _ref1[2];
-            if (auth_address === _this.auth_address) {
-              _this.setCert(auth_type, user_name, cert_sign);
-              gotauth = true;
-              break;
+          return _this.cmd("fileGet", "data/users.json", function(res) {
+            var auth_address, auth_type, cert, cert_sign, data, gotauth, user, user_name, _ref, _ref1, _ref2;
+            _ref = JSON.parse(res)["users"];
+            for (user in _ref) {
+              data = _ref[user];
+              _this.users[user] = data;
             }
-          }
-          if (!gotauth) {
-            return $(".panel-intro").addClass("noauth");
-          }
+            gotauth = false;
+            _ref1 = _this.users;
+            for (user_name in _ref1) {
+              cert = _ref1[user_name];
+              _ref2 = cert.split(","), auth_type = _ref2[0], auth_address = _ref2[1], cert_sign = _ref2[2];
+              if (auth_address === _this.auth_address) {
+                _this.setCert(auth_type, user_name, cert_sign);
+                gotauth = true;
+                break;
+              }
+            }
+            if (!gotauth) {
+              return $(".panel-intro").addClass("noauth");
+            }
+          });
         };
       })(this));
     };

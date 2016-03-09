@@ -6,7 +6,7 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: *');
 
 
-if (isset($_SERVER['HTTP_REFERER']) and strpos($_SERVER['HTTP_REFERER'], $site) === false and strpos(strtolower($_SERVER['HTTP_REFERER']), $site_domain) === false) { 
+if (isset($_SERVER['HTTP_REFERER']) and strpos($_SERVER['HTTP_REFERER'], $site) === false and strpos(strtolower($_SERVER['HTTP_REFERER']), $site_domain) === false) {
 	header('HTTP/1.0 403 Forbidden');
 	logdie("Referer error.");
 }
@@ -28,6 +28,22 @@ if (!preg_match("#^[A-Za-z0-9]+$#", $user_name)) {
 if (!preg_match("#^[A-Za-z0-9]+$#", $auth_address)) {
 	header("HTTP/1.0 400 Bad Request");
 	logdie("Bad address.");
+}
+
+
+
+logtext("Loading archive users...");
+$data = json_decode(file_get_contents($users_archive_json));
+
+foreach ($data->users as $data_user_name => $data_cert) {
+	if (strtolower($data_user_name) == strtolower($user_name)) {
+		header("HTTP/1.0 400 Bad Request");
+		logdie("Username $user_name already exits.");
+	}
+	if (strpos($data_cert, ",".$auth_address.",") !== false) {
+		header("HTTP/1.0 400 Bad Request");
+		logdie("Address $auth_address already exits.");
+	}
 }
 
 
@@ -77,7 +93,7 @@ fclose($f);
 
 logtext("Signing...");
 $out = array();
-exec("python zeronet.py --debug siteSign $site $privatekey --publish 2>&1", $out);  
+exec("python zeronet.py --debug siteSign $site $privatekey --publish 2>&1", $out);
 $out = implode("\n", $out);
 logtext($out);
 if (strpos($out, "content.json signed!") === false) {

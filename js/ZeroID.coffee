@@ -55,7 +55,7 @@ class ZeroID extends ZeroFrame
 		if cmd == "setSiteInfo" # Site updated
 			@log message.params.event, message
 			@site_info = message.params
-			if message.params.event?[0] == "file_done" and message.params.event?[1] == "data/users.json"
+			if message.params.event?[0] == "file_done" and message.params.event?[1].indexOf("data/users") == 0
 				@setRequestPercent(100)
 				@endRequest()
 				@reloadUsers()
@@ -127,18 +127,21 @@ class ZeroID extends ZeroFrame
 
 
 	reloadUsers: ->
-		@cmd "fileGet", "data/users.json", (res) =>
+		@cmd "fileGet", "data/users_archive.json", (res) =>
 			@users = JSON.parse(res)["users"]
-			gotauth = false
-			# Check if we has cert
-			for user_name, cert of @users
-				[auth_type, auth_address, cert_sign] = cert.split(",")
-				if auth_address == @auth_address
-					@setCert(auth_type, user_name, cert_sign)
-					gotauth = true
-					break
-			if not gotauth
-				$(".panel-intro").addClass("noauth")
+			@cmd "fileGet", "data/users.json", (res) =>
+				for user, data of JSON.parse(res)["users"]
+					@users[user] = data
+				gotauth = false
+				# Check if we has cert
+				for user_name, cert of @users
+					[auth_type, auth_address, cert_sign] = cert.split(",")
+					if auth_address == @auth_address
+						@setCert(auth_type, user_name, cert_sign)
+						gotauth = true
+						break
+				if not gotauth
+					$(".panel-intro").addClass("noauth")
 
 
 

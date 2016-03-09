@@ -9,6 +9,14 @@ def log(text):
 	open(config.logfile, "a").write("\n[%s] %s" % (time.strftime("%a, %d %b %Y %H:%M:%S"), text))
 
 def addUser(auth_address, user_name):
+	data = json.load(open("data/%s/data/users_archive.json" % config.site_address))
+	# Check if user name or auth address exits
+	for data_user_name, data_cert in data["users"].items():
+		if data_user_name.lower() == user_name.lower():
+			return log("User name %s already exits." % user_name)
+		if ",%s," % auth_address in data_cert:
+			return log("Address %s already exits." % auth_address)
+
 	data = json.load(open("data/%s/data/users.json" % config.site_address))
 	# Check if user name or auth address exits
 	for data_user_name, data_cert in data["users"].items():

@@ -58,5 +58,5 @@ $privatekey = // your site privatekey
 
 $zeronet_dir = // your zeronet installation dir
 $users_json = "$zeronet_dir/data/$site/data/users.json";
-
+$users_archive_json = "$zeronet_dir/data/$site/data/users_archive.json";
 ?>
