@@ -36,7 +36,7 @@ input.text:focus, textarea:focus { border-color: #5FC0EA; outline: none; backgro
 
 .particles { position: absolute; width: 100%; height: 100%; opacity: 0; -webkit-transition: 0.3s all ; -moz-transition: 0.3s all ; -o-transition: 0.3s all ; -ms-transition: 0.3s all ; transition: 0.3s all  }
 
-.ui { position: absolute; width: 100%; top: 50%; left: 50%; z-index: 999; -webkit-transform: translatex(-50%) translatey(-50%); -moz-transform: translatex(-50%) translatey(-50%); -o-transform: translatex(-50%) translatey(-50%); -ms-transform: translatex(-50%) translatey(-50%); transform: translatex(-50%) translatey(-50%) ; text-align: center; -webkit-perspective: 500px ; -moz-perspective: 500px ; -o-perspective: 500px ; -ms-perspective: 500px ; perspective: 500px  }
+.ui { position: absolute; width: 500px; max-width: 100%; top: 50%; left: 50%; z-index: 999; -webkit-transform: translatex(-50%) translatey(-50%); -moz-transform: translatex(-50%) translatey(-50%); -o-transform: translatex(-50%) translatey(-50%); -ms-transform: translatex(-50%) translatey(-50%); transform: translatex(-50%) translatey(-50%) ; text-align: center; -webkit-perspective: 500px ; -moz-perspective: 500px ; -o-perspective: 500px ; -ms-perspective: 500px ; perspective: 500px  }
 .ui.flipped .panel-front { -webkit-transform: rotateY(180deg) ; -moz-transform: rotateY(180deg) ; -o-transform: rotateY(180deg) ; -ms-transform: rotateY(180deg) ; transform: rotateY(180deg)  }
 .ui.flipped .panel-back { -webkit-transform: rotateY(0deg) ; -moz-transform: rotateY(0deg) ; -o-transform: rotateY(0deg) ; -ms-transform: rotateY(0deg) ; transform: rotateY(0deg)  }
 
