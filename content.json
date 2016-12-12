@@ -46,6 +46,9 @@
  },
  "signs_required": 1,
  "title": "ZeroID",
+ "translate": [
+  "js/all.js"
+ ],
  "viewport": "width=device-width, initial-scale=1.0",
- "zeronet_version": "0.3.6"
+ "zeronet_version": "0.5.1"
 }
