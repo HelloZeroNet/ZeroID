@@ -1,0 +1,16 @@
+{
+  "Authorized for <b>...</b>": "Authorisé pour <b>...</b>",
+  "Now you can directly interact with every site,<br> that accepts zeroid.bit users!": "Vous pouvez maintenant interagir avec tous les sites<br> qui acceptent les utilisateurs zeroid.bit !",
+  "This is a sample trusted authorization provider, that": "Ceci est un exemple d'un fournisseur d'autorisations qui",
+  " allows you to interact sites without contacting the owner.": "vous permet d'interagir avec des sites sans contacter leur administrateur",
+  "Get auth cert &raquo;": "Demander un certificat &raquo;",
+  "Request&#8196;auth&#8196;cert": "Demander&#8196;un&#81996;certificat",
+  "Username:": "Nom d'utilisateur :",
+  "zeronetuser": "utilisateur de zeronet",
+  "To address:": "À l'adresse :",
+  "Send message:": "Envoyer un message :",
+  "Enter username you want to register": "Entrez le nom d'utilisateur que vous voulez",
+  "&laquo; use direct messaging": "&laquo; utiliser une messagerie directe",
+  "Send request": "Envoyer une demande",
+  "or use BitMessage &raquo;": "ou utiliser BitMessage &raquo;"
+}
