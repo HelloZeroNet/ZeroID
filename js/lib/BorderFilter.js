@@ -9,46 +9,39 @@ var FilterGaussianX = function() {
 
     {
         this.uniforms = {
-            'vViewport': {
-                'type': '2f',
-                'value': {
-                    'x': 1000, // TODO: ADAPT
-                    'y': 0 // TODO: ADAPT
-                }
-            }
+
         };
     }
 
     {
-        this.fragmentSrc = [];
 
-        this.fragmentSrc.push('precision mediump float;');
-        this.fragmentSrc.push('varying vec2 vTextureCoord;');
-        this.fragmentSrc.push('uniform sampler2D uTexture;');
-        this.fragmentSrc.push('uniform vec2 vViewport;');
-        this.fragmentSrc.push('');
-        this.fragmentSrc.push('void main(void) {');
-            this.fragmentSrc.push('vec4 vColor = vec4(0.0);');
-            this.fragmentSrc.push('');
-
-            var dblSigma = 12.0;  // TODO: PARAMETERIZE
-            var dblFractional = 1.0 / (dblSigma * 2.5066282746);
-            var dblExponent = 1.0 / (2.0 * dblSigma * dblSigma);
-
-            for (var intFor1 = -32; intFor1 <= 32; intFor1 += 1) { // TODO: PARAMETERIZE
-                var dblGaussian = dblFractional * Math.exp(-1.0 * intFor1 * intFor1 * dblExponent);
-
-                // TODO: NORMALIZE IF NECESSARY
-
-                this.fragmentSrc.push('vColor += ');
-                    this.fragmentSrc.push(dblGaussian + ' * texture2D(uTexture, vec2(vTextureCoord.x + (' + intFor1.toFixed(1) + ' / vViewport.x), vTextureCoord.y))');
-                this.fragmentSrc.push(';');
-            }
-
-            this.fragmentSrc.push('');
-            this.fragmentSrc.push('gl_FragColor = vColor;');
-        this.fragmentSrc.push('}');
-        this.fragmentSrc = this.fragmentSrc.join("")
+        this.fragmentSrc =
+        "precision mediump float;" +
+        "        " +
+        "uniform sampler2D s_texture;" +
+        "" +
+        "varying vec2 vTextureCoord ;" +
+        "varying vec2 v_blurTexCoords[14];" +
+        " " +
+        "void main()" +
+        "{" +
+        "    gl_FragColor = vec4(0.0);" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 0])*0.0044299121055113265;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 1])*0.00895781211794;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 2])*0.0215963866053;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 3])*0.0443683338718;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 4])*0.0776744219933;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 5])*0.115876621105;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 6])*0.147308056121;" +
+        "    gl_FragColor += texture2D(s_texture, vTextureCoord         )*0.159576912161;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 7])*0.147308056121;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 8])*0.115876621105;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[ 9])*0.0776744219933;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[10])*0.0443683338718;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[11])*0.0215963866053;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[12])*0.00895781211794;" +
+        "    gl_FragColor += texture2D(s_texture, v_blurTexCoords[13])*0.0044299121055113265;" +
+        "}"
     }
 };
 

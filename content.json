@@ -5,49 +5,58 @@
  "domain": "zeroid.bit",
  "files": {
   "css/all.css": {
-   "sha512": "1a991c7685724a6de3a9c6a6097fcfa830704edd61c90ba84b3f70818569c53a",
-   "size": 74387
+   "sha512": "22d9e58f937f79009be1347ff6340979f9e58df9d3e8ecf39870629176ca8caa",
+   "size": 74396
   },
   "data/archive.py": {
    "sha512": "ad0818adfe413ade28e9a712f841fec70170e901bdecde9290cbc1a5abcac8b7",
    "size": 309
   },
   "data/users.json": {
-   "sha512": "5b7021023b1b49c88c485c838b70e63903649db50bea05819d6dd120ca03cc93",
-   "size": 1543
+   "sha512": "536eee6c858d6ed81f1d8d2409a28a35dce9e78e453fdbde97bfd8c0c6fc0cc4",
+   "size": 494482
   },
   "data/users_archive.json": {
-   "sha512": "89a52a420857bfb77419c8087a76056c91a42f8767dc2ce2db13cbb099a0283b",
-   "size": 924846
+   "sha512": "3e4aa54bff46e3dc24e9aee649c18ec9dd6f6f0510cf4317387ffadca1f7d4a6",
+   "size": 3864871
   },
   "img/loading.gif": {
    "sha512": "8a42b98962faea74618113166886be488c09dad10ca47fe97005edc5fb40cc00",
    "size": 723
   },
   "index.html": {
-   "sha512": "04b36f24ac215f93d41e80beb3afd36f65e6fe0a6a3ce2c6b15a2fc9eddb55ec",
-   "size": 1720
+   "sha512": "18b0f83c8335554c576ebfb62d7104764843b9d44095d4d5761daed6a398989a",
+   "size": 1727
   },
   "js/all.js": {
-   "sha512": "b09e2a4f56df781deabfc2fe976e10f40ecca37874caa957a6c340cd5265e0d3",
-   "size": 387774
+   "sha512": "068c821eaae9900cf92694c0a1ddf9f0b58c8a9b19976aa1a6a9daf2bd845987",
+   "size": 388203
+  },
+  "languages/zh-tw.json": {
+   "sha512": "c620b45c1fedf57ce941f4e546c27106492b9e5e1b088c48c579d5d0fd49c7a1",
+   "size": 945
+  },
+  "languages/zh.json": {
+   "sha512": "fb3187905d5dd6fe2eb7575df64bcf28f27a75472535a80ca899d70974c7aa23",
+   "size": 930
   }
  },
  "ignore": "(js|css)/(?!all.(js|css))",
  "inner_path": "content.json",
- "modified": 1457531807.07628,
+ "modified": 1481557203.805,
  "sign": [
-  11786737260381685668107569012437327500203624942428393496239319861913429690663,
-  24028375772591545449674810361438043104393324333265136823139473473523525100823
+  90561218351576159580306725273880108330131465938426857708383952879664581277256,
+  38557124276684260902694232127972868930377687270809194157258356602157745268523
  ],
  "signers_sign": "G7d9tTFjHbptCSR/TDr2mA1OILLhWMtVGvKZcLIwW56ut0V+kPDgrivp+hZ7/C9IUOQ6dQzVVHKJK5XBSqm+QPw=",
  "signs": {
-  "1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz": "HBZq4gd8w2vHY3zLayXmsIrIzr6GIXmeG6qPEdFpSTefOoCkhiQiOBeLQn39jpm6v+MQpKrUGtzlGacuC5ujHEk="
+  "1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz": "HCZ/w/u6qYqYiJKHM/AaJLYziCY/pBuNb+2Uy1edDoZz3bCZ3kPJcB73yRIg4wynXLl6cmFLdzlFpb3pczqlqwA="
  },
  "signs_required": 1,
  "title": "ZeroID",
  "translate": [
-  "js/all.js"
+  "js/all.js",
+  "index.html"
  ],
  "viewport": "width=device-width, initial-scale=1.0",
  "zeronet_version": "0.5.1"

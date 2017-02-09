@@ -50,6 +50,40 @@ class ZeroID extends ZeroFrame
 				@sendRequest()
 			return false
 
+		$(".search").on "click", =>  # Search in users
+			$(".ui-register").addClass("hidden")
+			$(".ui-search").removeClass("hidden")
+			$(".ui-search .search-username").focus()
+
+		$(".search-username").on "input", =>
+			LimitRate 50, => # Check if user name taken
+				val = $(".search-username").val().toLowerCase()
+				val = val.replace /[^a-z0-9]/g, ""
+				if val != $(".search-username").val() then $(".search-username").val(val)
+				$(".username-status").removeClass("error ok")
+				if @users[val]
+					$(".username-status").addClass("ok")
+					$(".username-status .title").text("found")
+					if Page.server_info.rev > 1880
+						$(".button-mute").css("opacity", 1)
+				else if val != ""
+					$(".username-status").addClass("error")
+					$(".username-status .title").text("not found")
+					$(".button-mute").css("opacity", 0)
+				else
+					$(".username-status .title").text("")
+					$(".button-mute").css("opacity", 0)
+
+		$(".search-back").on "click", =>
+			$(".ui-register").removeClass("hidden")
+			$(".ui-search").addClass("hidden")
+
+		$(".button-mute").on "click", =>
+			val = $(".search-username").val()
+			[auth_type, auth_address, cert_sign] = @users[val].split(",")
+			Page.cmd "muteAdd", [auth_address, val+"@zeroid.bit", ""], =>
+				Page.cmd "wrapperNotification", ["done", "User #{val}@zeroid.bit muted!"]
+
 	# Route incoming requests
 	route: (cmd, message) ->
 		if cmd == "setSiteInfo" # Site updated
