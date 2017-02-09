@@ -2,7 +2,7 @@
 	"Authorized for <b>...</b>": "授權為<b>...</b>",
 	"Now you can directly interact with every site,<br> that accepts zeroid.bit users!": "現在你可以與每個接受 zeroid.bit 的網站交互了！",
 	"This is a sample trusted authorization provider, that": "這是一個可信授權提供者的樣例，",
-	" allows you to interact sites without contacting the owner.": "允许你在不联系站点拥有者的情况下与网站交互。",
+	" allows you to interact sites without contacting the owner.": "允許你在不聯繫站點擁有者的情況下與網站交互。",
 	"Get auth cert &raquo;": "獲取鑑別憑證",
 	"Request&#8196;auth&#8196;cert": "請求鑑別憑證",
 	"Username:": "使用者名稱",
@@ -12,5 +12,11 @@
 	"Enter username you want to register": "輸入你想要的使用者名稱",
 	"&laquo; use direct messaging": "&laquo; 使用直接訊息",
 	"Send request": "傳送請求",
-	"or use BitMessage &raquo;": "或者使用比特信 &raquo;"
+	"or use BitMessage &raquo;": "或者使用比特信 &raquo;",
+
+	"Search in user database...": "在使用者資料庫中搜索...",
+	"&laquo; Back to registration": "&laquo; 返回註冊",
+	"found": "已找到",
+	"not found": "未找到",
+	"User \" + val + \"@zeroid.bit muted!": "使用者 \" + val + \"@zeroid.bit 已加入黑名單！"
 }
