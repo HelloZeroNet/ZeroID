@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<div class="ui">
+<div class="ui ui-register">
 
  <!-- Intro panel -->
  <div class="panel panel-intro panel-front">
@@ -13,11 +13,13 @@
   <div class="text-gotauth">
    <h3 class="current-auth">Authorized for <b>...</b></h3>
    <h3>Now you can directly interact with every site,<br> that accepts zeroid.bit users!</h3>
+   <a href="#" class="minilink search" style="margin-top: -20px">Search in user database...</a>
   </div>
   <div class="text-noauth">
    <h3>This is a sample trusted authorization provider, that<br> allows you to interact sites without contacting the owner.</h3>
    <a href="?#Create" class='button button-get'>Get auth cert &raquo;</a>
    <h2 class="please-update current-auth">This site requires ZeroNet 0.3.0, please update!</h2>
+   <a href="#" class="minilink search" style="margin-top: -20px">Search in user database...</a>
   </div>
  </div>
  <!-- EOF Intro panel -->
@@ -32,15 +34,28 @@
     <span>To address:</span> <code class="bitmessage-address">n/a</code><br>
     <span>Send message:</span> <code class="bitmessage-message">Enter username you want to register</code>
    </h4>
-   <a href="#Bitmessage" class="togglesend">&laquo; use direct messaging</a>
+   <a href="#Bitmessage" class="togglesend minilink">&laquo; use direct messaging</a>
   </div>
 
   <div class="send-direct active">
    <a href="?#Create" class='button button-send'>Send request</a><br>
-   <a href="#Bitmessage" class="togglesend">or use BitMessage &raquo;</a>
+   <a href="#Bitmessage" class="togglesend minilink">or use BitMessage &raquo;</a>
   </div>
  </div>
  <!-- EOF Registration input panel -->
+
+</div>
+
+<div class="ui hidden ui-search panel-intro">
+ <div class="panel">
+  <div class="search-result"></div>
+  <div>
+   <input type="text" class="text search-username" maxlength=16 placeholder="Search user...">
+   <div class='username-status'><span class='title'></span><span class='dot'>&bullet;</span></div>
+   <a href="#Mute" class='button button-mute'>Mute user</a>
+  </div>
+  <a href="#" class="minilink search-back">&laquo; Back to registration</a>
+ </div>
 
 </div>
 

@@ -171,7 +171,6 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 }).call(this);
 
 
-
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/lib/jquery.csslater.coffee ---- */
 
 
@@ -273,7 +272,6 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 }).call(this);
 
 
-
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/utils/Class.coffee ---- */
 
 
@@ -331,7 +329,6 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 }).call(this);
 
 
-
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/utils/LimitRate.coffee ---- */
 
 
@@ -350,7 +347,6 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
   };
 
 }).call(this);
-
 
 
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/utils/ZeroFrame.coffee ---- */
@@ -469,7 +465,6 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
   window.ZeroFrame = ZeroFrame;
 
 }).call(this);
-
 
 
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/Particles.coffee ---- */
@@ -723,7 +718,6 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 }).call(this);
 
 
-
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/ZeroID.coffee ---- */
 
 
@@ -786,7 +780,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
           });
         };
       })(this));
-      return $(".button-send").on("click", (function(_this) {
+      $(".button-send").on("click", (function(_this) {
         return function() {
           if ($(".username").val() === "") {
             $(".username-status .title").text("missing");
@@ -798,6 +792,56 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
             _this.sendRequest();
           }
           return false;
+        };
+      })(this));
+      $(".search").on("click", (function(_this) {
+        return function() {
+          $(".ui-register").addClass("hidden");
+          $(".ui-search").removeClass("hidden");
+          return $(".ui-search .search-username").focus();
+        };
+      })(this));
+      $(".search-username").on("input", (function(_this) {
+        return function() {
+          return LimitRate(50, function() {
+            var val;
+            val = $(".search-username").val().toLowerCase();
+            val = val.replace(/[^a-z0-9]/g, "");
+            if (val !== $(".search-username").val()) {
+              $(".search-username").val(val);
+            }
+            $(".username-status").removeClass("error ok");
+            if (_this.users[val]) {
+              $(".username-status").addClass("ok");
+              $(".username-status .title").text("found");
+              if (Page.server_info.rev > 1880) {
+                return $(".button-mute").css("opacity", 1);
+              }
+            } else if (val !== "") {
+              $(".username-status").addClass("error");
+              $(".username-status .title").text("not found");
+              return $(".button-mute").css("opacity", 0);
+            } else {
+              $(".username-status .title").text("");
+              return $(".button-mute").css("opacity", 0);
+            }
+          });
+        };
+      })(this));
+      $(".search-back").on("click", (function(_this) {
+        return function() {
+          $(".ui-register").removeClass("hidden");
+          return $(".ui-search").addClass("hidden");
+        };
+      })(this));
+      return $(".button-mute").on("click", (function(_this) {
+        return function() {
+          var auth_address, auth_type, cert_sign, val, _ref;
+          val = $(".search-username").val();
+          _ref = _this.users[val].split(","), auth_type = _ref[0], auth_address = _ref[1], cert_sign = _ref[2];
+          return Page.cmd("muteAdd", [auth_address, val + "@zeroid.bit", ""], function() {
+            return Page.cmd("wrapperNotification", ["done", "User " + val + "@zeroid.bit muted!"]);
+          });
         };
       })(this));
     };
