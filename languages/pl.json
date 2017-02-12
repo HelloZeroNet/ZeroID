@@ -1,12 +1,13 @@
 {
 	"Authorized for <b>...</b>": "Upoważnienie dla <b>...</b>",
 	"Now you can directly interact with every site,<br> that accepts zeroid.bit users!": "Możesz teraz w pełni korzystać z każdej strony,<br> która akceptuje użytkowników zeroid.bit!",
-	"This is a sample trusted authorization provider, that": "Jest to przykładowy zaufany dostawca upoważniień, który",
-	" allows you to interact sites without contacting the owner.": " pozwala ci na interakcję ze stroną bez kontaktowania się z ich właścicielem",
-	"Get auth cert &raquo;": "Zdobądź certyfikat upoważnień &raquo;",
-	"Request&#8196;auth&#8196;cert": "Żądanie&#8196;certyfikatu&#81996;upoważnień",
+	"This is a sample trusted authorization provider, that": "Jest to zaufany dostawca upoważnień, który",
+	" allows you to interact sites without contacting the owner.": " pozwala ci na interakcję ze stroną bez kontaktowania się z jej właścicielem",
+	"Get auth cert &raquo;": "Zdobądź certyfikat &raquo;",
+	"Request&#8196;auth&#8196;cert": "Tworzenie&#8196;nowego&#8196;użytkownika",
 	"Username:": "Nazwa użytkownika:",
 	"zeronetuser": "Użytkownik ZeroNet",
+	"taken": "zajęty",
 	"To address:": "Na adres:",
 	"Send message:": "Wyślij wiadomość:",
 	"Enter username you want to register": "Wprowadź nazwę użytkownika jaką chcesz zarejestrować",
@@ -14,9 +15,11 @@
 	"Send request": "Wyślij żądanie",
 	"or use BitMessage &raquo;": "bądź użyj BitMessage &raquo;",
 
-	"Search in user database...": "Wyszukaj w bazie użytkowników...",
+	"Search in user database...": "Wyszukaj w bazie użytkowników",
 	"&laquo; Back to registration": "&laquo; powrót do rejestracji",
-	"found": "znaleziono",
-	"not found": "nie znaleziono",
-	"User \" + val + \"@zeroid.bit muted!": "Użytkownik \" + val + \"@zeroid.bit ukryty！"
+	"Search user...": "Wyszukaj użytkownika",
+	"found": "jest",
+	"not found": "brak",
+	"Mute user": "Ukryj użytkownika",
+	"User \" + val + \"@zeroid.bit muted!": "Użytkownik \" + val + \"@zeroid.bit ukryty!"
 }
