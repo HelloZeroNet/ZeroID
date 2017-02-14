@@ -500,7 +500,11 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       this.stage = new PIXI.Container();
       this.bg = null;
       this.running = true;
-      this.disabled = false;
+      if (navigator.userAgent.indexOf("Android") > 0) {
+        this.disabled = true;
+      } else {
+        this.disabled = false;
+      }
       this.speed = 1;
       this.fps_timer = null;
       this.fps = 0;
@@ -564,7 +568,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     };
 
     Particles.prototype.addPeers = function() {
-      var c, g, i, peer, texture, _i;
+      var c, g, i, num, peer, texture, _i;
       this.peers = [];
       c = new PIXI.Circle(0, 0, 3);
       g = new PIXI.Graphics();
@@ -572,7 +576,12 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       g.drawShape(c);
       g.endFill();
       texture = g.generateTexture();
-      for (i = _i = 1; _i <= 100; i = ++_i) {
+      if (window.innerWidth < 1000) {
+        num = 50;
+      } else {
+        num = 100;
+      }
+      for (i = _i = 1; 1 <= num ? _i <= num : _i >= num; i = 1 <= num ? ++_i : --_i) {
         peer = new PIXI.Sprite(texture);
         peer.position.x = Math.random() * this.width;
         peer.position.y = Math.random() * this.height;
@@ -693,7 +702,13 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     particles.resize();
     particles.createBlur();
     particles.addPeers();
-    particles.start();
+    if (particles.disabled) {
+      particles.running = true;
+      particles.speed = 0;
+      particles.update();
+    } else {
+      particles.start();
+    }
     $(".particles").css("opacity", 1);
     return $(window).on("resize", particles.resize);
   };
@@ -716,6 +731,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
   }), 2000);
 
 }).call(this);
+
 
 
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/ZeroID.coffee ---- */

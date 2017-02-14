@@ -22,7 +22,10 @@ class Particles
 		@bg = null
 
 		@running = true
-		@disabled = false
+		if navigator.userAgent.indexOf("Android") > 0
+			@disabled = true
+		else
+			@disabled = false
 		@speed = 1
 		@fps_timer = null
 		@fps = 0
@@ -105,7 +108,11 @@ class Particles
 		g.drawShape(c)
 		g.endFill()
 		texture = g.generateTexture()
-		for i in [1..100]
+		if window.innerWidth < 1000
+			num = 50
+		else
+			num = 100
+		for i in [1..num]
 			peer = new PIXI.Sprite(texture)
 			peer.position.x = Math.random()*@width
 			peer.position.y = Math.random()*@height
@@ -207,7 +214,12 @@ init = ->
 	particles.resize()
 	particles.createBlur()
 	particles.addPeers()
-	particles.start()
+	if particles.disabled
+		particles.running = true
+		particles.speed = 0
+		particles.update()
+	else
+		particles.start()
 	$(".particles").css "opacity", 1
 	$(window).on "resize", particles.resize
 
