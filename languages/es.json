@@ -1,0 +1,25 @@
+{
+	"Authorized for <b>...</b>": "Autorizado para <b>...</b>",
+	"Now you can directly interact with every site,<br> that accepts zeroid.bit users!": "¡Ahora puedes interactuar directamente con cualquier sitio,<br> que acepte usuarios zeroid.bit!",
+	"This is a sample trusted authorization provider, that": "Esto es una muestra de confianza autorizada por el proovedor, que",
+	" allows you to interact sites without contacting the owner.": " te permite interactuar con sitios sin tener que contactar el dueño",
+	"Get auth cert &raquo;": "Obtener auto. cert. &raquo;",
+	"Request&#8196;auth&#8196;cert": "Solicitud&#8196;auto.&#8196;cert.",
+	"Username:": "Nombre de usuario:",
+	"zeronetuser": "Usuario ZeroNet",
+	"taken": "ocupado",
+	"To address:": "A la dirección:",
+	"Send message:": "Enviar mensaje:",
+	"Enter username you want to register": "Coloca el usuario que quieres registrar",
+	"&laquo; use direct messaging": "&laquo; usar mensajeria directa",
+	"Send request": "Enviar solicitud",
+	"or use BitMessage &raquo;": "o usa BitMessage &raquo;",
+
+	"Search in user database...": "Buscar en la base de datos de usuarios",
+	"&laquo; Back to registration": "&laquo; Volver a la registración",
+	"Search user...": "Buscar usuario...",
+	"found": "encontrado",
+	"not found": "no encontrado",
+	"Mute user": "Silenciar usuario",
+	"User \" + val + \"@zeroid.bit muted!": "Usuario \" + val + \"@zeroid.bit silenciado!"
+}
