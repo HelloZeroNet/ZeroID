@@ -101,6 +101,33 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 
 
 
+/* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/lib/Prototypes.coffee ---- */
+
+
+(function() {
+  String.prototype.startsWith = function(s) {
+    return this.slice(0, s.length) === s;
+  };
+
+  String.prototype.endsWith = function(s) {
+    return s === '' || this.slice(-s.length) === s;
+  };
+
+  String.prototype.repeat = function(count) {
+    return new Array(count + 1).join(this);
+  };
+
+  window.isEmpty = function(obj) {
+    var key;
+    for (key in obj) {
+      return false;
+    }
+    return true;
+  };
+
+}).call(this);
+
+
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/lib/jquery.cssanim.coffee ---- */
 
 
@@ -472,12 +499,12 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 
 (function() {
   var Particles, init,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   Particles = (function() {
     function Particles() {
-      this.resize = __bind(this.resize, this);
-      this.update = __bind(this.update, this);
+      this.resize = bind(this.resize, this);
+      this.update = bind(this.update, this);
       this.renderer = PIXI.autoDetectRenderer(1024, 768, {
         backgroundColor: 0x3F51B5,
         antialias: true,
@@ -524,7 +551,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     }
 
     Particles.prototype.createBlur = function() {
-      var blur_x, blur_y, canvas, ctx, i, mask, _i;
+      var blur_x, blur_y, canvas, ctx, i, j, mask;
       this.blured = new PIXI.Container();
       this.render_texture = new PIXI.RenderTexture(this.renderer, this.width, this.height);
       this.output_sprite = new PIXI.Sprite(this.render_texture);
@@ -536,7 +563,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       ctx.lineWidth = 60;
       ctx.shadowBlur = 40;
       ctx.shadowColor = ctx.fillStyle = ctx.strokeStyle = "#FFF";
-      for (i = _i = 0; _i <= 5; i = ++_i) {
+      for (i = j = 0; j <= 5; i = ++j) {
         ctx.beginPath();
         ctx.moveTo(100, 100);
         ctx.lineTo(100, 350);
@@ -568,7 +595,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     };
 
     Particles.prototype.addPeers = function() {
-      var c, g, i, num, peer, texture, _i;
+      var c, g, i, j, num, peer, ref, texture;
       this.peers = [];
       c = new PIXI.Circle(0, 0, 3);
       g = new PIXI.Graphics();
@@ -581,7 +608,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       } else {
         num = 100;
       }
-      for (i = _i = 1; 1 <= num ? _i <= num : _i >= num; i = 1 <= num ? ++_i : --_i) {
+      for (i = j = 1, ref = num; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
         peer = new PIXI.Sprite(texture);
         peer.position.x = Math.random() * this.width;
         peer.position.y = Math.random() * this.height;
@@ -599,13 +626,13 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     };
 
     Particles.prototype.update = function() {
-      var distance, lines, other, peer, peer_x, peer_y, _i, _j, _len, _len1, _ref, _ref1;
+      var distance, j, k, len, len1, lines, other, peer, peer_x, peer_y, ref, ref1;
       this.fps += 1;
       lines = this.lines;
       lines.clear();
-      _ref = this.peers;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        peer = _ref[_i];
+      ref = this.peers;
+      for (j = 0, len = ref.length; j < len; j++) {
+        peer = ref[j];
         peer.position.x += peer.speed.x * this.speed;
         peer.position.y += peer.speed.y * this.speed;
         peer_x = peer.position.x;
@@ -633,9 +660,9 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
             peer.position.y = this.height + 100;
           }
         }
-        _ref1 = this.peers;
-        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-          other = _ref1[_j];
+        ref1 = this.peers;
+        for (k = 0, len1 = ref1.length; k < len1; k++) {
+          other = ref1[k];
           distance = Math.max(Math.abs(peer_x - other.position.x), Math.abs(peer_y - other.position.y));
           if (distance < 100) {
             lines.lineStyle(1, 0xFFFFFF, 1 - distance / 100);
@@ -714,9 +741,9 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
   };
 
   if (window.innerHeight > 200) {
-    init();
-  } else {
     setTimeout(init, 20);
+  } else {
+    setTimeout(init, 100);
   }
 
   setInterval((function() {
@@ -733,17 +760,16 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
 }).call(this);
 
 
-
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/js/ZeroID.coffee ---- */
 
 
 (function() {
   var ZeroID,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    __hasProp = {}.hasOwnProperty;
+    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
 
-  ZeroID = (function(_super) {
-    __extends(ZeroID, _super);
+  ZeroID = (function(superClass) {
+    extend(ZeroID, superClass);
 
     function ZeroID() {
       return ZeroID.__super__.constructor.apply(this, arguments);
@@ -852,9 +878,9 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       })(this));
       return $(".button-mute").on("click", (function(_this) {
         return function() {
-          var auth_address, auth_type, cert_sign, val, _ref;
+          var auth_address, auth_type, cert_sign, ref, val;
           val = $(".search-username").val();
-          _ref = _this.users[val].split(","), auth_type = _ref[0], auth_address = _ref[1], cert_sign = _ref[2];
+          ref = _this.users[val].split(","), auth_type = ref[0], auth_address = ref[1], cert_sign = ref[2];
           return Page.cmd("muteAdd", [auth_address, val + "@zeroid.bit", ""], function() {
             return Page.cmd("wrapperNotification", ["done", "User " + val + "@zeroid.bit muted!"]);
           });
@@ -863,11 +889,11 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
     };
 
     ZeroID.prototype.route = function(cmd, message) {
-      var _ref, _ref1;
+      var ref, ref1;
       if (cmd === "setSiteInfo") {
         this.log(message.params.event, message);
         this.site_info = message.params;
-        if (((_ref = message.params.event) != null ? _ref[0] : void 0) === "file_done" && ((_ref1 = message.params.event) != null ? _ref1[1].indexOf("data/users") : void 0) === 0) {
+        if (((ref = message.params.event) != null ? ref[0] : void 0) === "file_done" && ((ref1 = message.params.event) != null ? ref1[1].indexOf("data/users") : void 0) === 0) {
           this.setRequestPercent(100);
           this.endRequest();
           return this.reloadUsers();
@@ -887,7 +913,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       $(".button-send").addClass("loading");
       $(".username").attr("readonly", "true");
       this.setRequestPercent(10);
-      return $.post("https://demo.zeronet.io/ZeroID/request.php", {
+      return $.post("https://zeroid.qc.to/ZeroID/request.php", {
         "auth_address": this.auth_address,
         "user_name": $(".username").val(),
         "width": $(".ui h1").width()
@@ -914,14 +940,14 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       var err, solution;
       try {
         solution = eval(task.work_task);
-      } catch (_error) {
-        err = _error;
+      } catch (error) {
+        err = error;
         this.cmd("wrapperNotification", ["error", "Error while solving: " + err.message]);
         this.endRequest();
         return false;
       }
       this.setRequestPercent(30);
-      return $.post("https://demo.zeronet.io/ZeroID/solution.php", {
+      return $.post("https://zeroid.qc.to/ZeroID/solution.php", {
         "auth_address": this.auth_address,
         "user_name": $(".username").val(),
         "work_id": task.work_id,
@@ -968,31 +994,117 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       })(this));
     };
 
+    ZeroID.prototype.setStatusTitle = function(status_title) {
+      var elem;
+      if (this.status_timer) {
+        clearInterval(this.status_timer);
+      }
+      elem = $(".status-title");
+      this.log("Status: " + status_title);
+      if (status_title === "") {
+        elem.css("display", "none");
+        return;
+      }
+      elem.css("transform", "translateY(20px)").css("opacity", 0);
+      return this.status_timer = setTimeout(((function(_this) {
+        return function() {
+          elem.text(status_title);
+          elem.css("transition", "none");
+          elem.css("transform", "translateY(-20px)").css("opacity", 0);
+          return _this.status_timer = setTimeout((function() {
+            elem.css("transition", "");
+            return elem.css("transform", "translateY(0px)").css("opacity", 1);
+          }), 10);
+        };
+      })(this)), 600);
+    };
+
+    ZeroID.prototype.loadCert = function(cert_filename, user_name, cb) {
+      return Page.cmd("fileGet", cert_filename, (function(_this) {
+        return function(res) {
+          res = JSON.parse(res);
+          return cb(user_name, res["certs"][user_name]);
+        };
+      })(this));
+    };
+
+    ZeroID.prototype.searchAuthAddress = function(search_auth_address, cb) {
+      var auth_address, auth_address_pre, auth_type, cert, cert_file_id, cert_filename, cert_sign, found, found_cert, pending_request, ref, ref1, ref2, user_name;
+      this.setStatusTitle("Searching auth_address: " + search_auth_address);
+      found = 0;
+      found_cert = false;
+      pending_request = 0;
+      ref = this.users;
+      for (user_name in ref) {
+        cert = ref[user_name];
+        if (cert.startsWith("@")) {
+          ref1 = cert.replace("@", "").split(","), cert_file_id = ref1[0], auth_address_pre = ref1[1];
+          if (search_auth_address.startsWith(auth_address_pre)) {
+            found += 1;
+            cert_filename = "certs_" + cert_file_id + ".json";
+            this.setStatusTitle("Recovering certificate from " + cert_filename + "...");
+            this.log("Possible optional file cert: " + cert + " " + user_name);
+            pending_request += 1;
+            this.loadCert("data/" + cert_filename, user_name, (function(_this) {
+              return function(user_name, cert) {
+                var auth_address, auth_type, cert_sign, ref2;
+                pending_request -= 1;
+                ref2 = cert.split(","), auth_type = ref2[0], auth_address = ref2[1], cert_sign = ref2[2];
+                if (auth_address === search_auth_address) {
+                  found_cert = true;
+                  _this.log("Found valid cert: " + cert);
+                  cb(user_name, cert);
+                } else {
+                  _this.log("Invalid cert: " + cert);
+                }
+                if (pending_request === 0) {
+                  _this.log("Found cert: " + found_cert);
+                  if (!found_cert) {
+                    return cb(false, false);
+                  }
+                }
+              };
+            })(this));
+          }
+        } else {
+          ref2 = cert.split(","), auth_type = ref2[0], auth_address = ref2[1], cert_sign = ref2[2];
+          if (auth_address === search_auth_address) {
+            this.log("Cert found directly: " + cert);
+            found += 1;
+            cb(user_name, cert);
+          }
+        }
+      }
+      if (found === 0) {
+        return cb(false, false);
+      }
+    };
+
     ZeroID.prototype.reloadUsers = function() {
+      this.setStatusTitle("Loading users data (1/2)...");
       return this.cmd("fileGet", "data/users_archive.json", (function(_this) {
         return function(res) {
           _this.users = JSON.parse(res)["users"];
+          _this.setStatusTitle("Loading users data (2/2)...");
           return _this.cmd("fileGet", "data/users.json", function(res) {
-            var auth_address, auth_type, cert, cert_sign, data, gotauth, user, user_name, _ref, _ref1, _ref2;
-            _ref = JSON.parse(res)["users"];
-            for (user in _ref) {
-              data = _ref[user];
+            var data, gotauth, ref, user;
+            ref = JSON.parse(res)["users"];
+            for (user in ref) {
+              data = ref[user];
               _this.users[user] = data;
             }
             gotauth = false;
-            _ref1 = _this.users;
-            for (user_name in _ref1) {
-              cert = _ref1[user_name];
-              _ref2 = cert.split(","), auth_type = _ref2[0], auth_address = _ref2[1], cert_sign = _ref2[2];
-              if (auth_address === _this.auth_address) {
+            return _this.searchAuthAddress(_this.auth_address, function(user_name, cert) {
+              var auth_address, auth_type, cert_sign, ref1;
+              _this.setStatusTitle("");
+              if (cert) {
+                ref1 = cert.split(","), auth_type = ref1[0], auth_address = ref1[1], cert_sign = ref1[2];
                 _this.setCert(auth_type, user_name, cert_sign);
-                gotauth = true;
-                break;
+                return gotauth = true;
+              } else {
+                return $(".panel-intro").addClass("noauth");
               }
-            }
-            if (!gotauth) {
-              return $(".panel-intro").addClass("noauth");
-            }
+            });
           });
         };
       })(this));

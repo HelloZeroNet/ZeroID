@@ -88,6 +88,8 @@ input.text:focus, textarea:focus { border-color: #5FC0EA; outline: none; backgro
 .send-bitmessage { position: absolute; display: none; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -o-transition: all 0.3s; -ms-transition: all 0.3s; transition: all 0.3s ; -webkit-transform: scale(1.5); -moz-transform: scale(1.5); -o-transform: scale(1.5); -ms-transform: scale(1.5); transform: scale(1.5) ; opacity: 0; width: 100% }
 .send-bitmessage.active { -webkit-transform: scale(1); -moz-transform: scale(1); -o-transform: scale(1); -ms-transform: scale(1); transform: scale(1) ; opacity: 1 }
 
+.status-title { -webkit-transition: all 1s cubic-bezier(0.77, 0, 0.175, 1); -moz-transition: all 1s cubic-bezier(0.77, 0, 0.175, 1); -o-transition: all 1s cubic-bezier(0.77, 0, 0.175, 1); -ms-transition: all 1s cubic-bezier(0.77, 0, 0.175, 1); transition: all 1s cubic-bezier(0.77, 0, 0.175, 1) ; margin-top: 30px; font-weight: bold; position: absolute; width: 100%;  }
+
 
 /* ---- /1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz/css/fonts.css ---- */
 
