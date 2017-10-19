@@ -130,7 +130,7 @@ class ZeroID extends ZeroFrame
 		@setRequestPercent(30)
 		# Sending back solution...
 
-		$.post "https://demo.zeronet.io/ZeroID/solution.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "work_id": task.work_id, "work_solution": solution }, (res) =>
+		$.post "https://zeroid.qc.to/ZeroID/solution.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "work_id": task.work_id, "work_solution": solution }, (res) =>
 			if res == "OK"
 				@setRequestPercent(80) # Solution ok, site change published, waiting for update
 			else
