@@ -160,9 +160,28 @@ class ZeroID extends ZeroFrame
 				$(".panel-intro .please-update").css("display", "inline-block")
 
 
+	setStatusTitle: (status_title) ->
+		if @status_timer then clearInterval(@status_timer)
+		elem = $(".status-title")
+		@log "Status: #{status_title}"
+		if status_title == ""
+			elem.css("display", "none")
+			return
+		elem.css("transform", "translateY(20px)").css("opacity", 0)
+		@status_timer = setTimeout ( =>
+			elem.text(status_title)
+			elem.css("transition", "none")
+			elem.css("transform", "translateY(-20px)").css("opacity", 0)
+			@status_timer = setTimeout ( ->
+				elem.css("transition", "")
+				elem.css("transform", "translateY(0px)").css("opacity", 1)
+			), 10
+		), 600
 	reloadUsers: ->
+		@setStatusTitle("Loading users data (1/2)...")
 		@cmd "fileGet", "data/users_archive.json", (res) =>
 			@users = JSON.parse(res)["users"]
+			@setStatusTitle("Loading users data (2/2)...")
 			@cmd "fileGet", "data/users.json", (res) =>
 				for user, data of JSON.parse(res)["users"]
 					@users[user] = data
