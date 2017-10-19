@@ -82,3 +82,5 @@ input.text:focus, textarea:focus { border-color: #5FC0EA; outline: none; backgro
 .send-direct.active { transform: scale(1); opacity: 1 }
 .send-bitmessage { position: absolute; display: none; transition: all 0.3s; transform: scale(1.5); opacity: 0; width: 100% }
 .send-bitmessage.active { transform: scale(1); opacity: 1 }
+
+.status-title { transition: all 1s cubic-bezier(0.77, 0, 0.175, 1); margin-top: 30px; font-weight: bold; position: absolute; width: 100%;  }

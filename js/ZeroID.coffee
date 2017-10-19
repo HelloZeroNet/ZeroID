@@ -177,6 +177,49 @@ class ZeroID extends ZeroFrame
 				elem.css("transform", "translateY(0px)").css("opacity", 1)
 			), 10
 		), 600
+
+	loadCert: (cert_filename, user_name, cb) ->
+		Page.cmd "fileGet", cert_filename, (res) =>
+			res = JSON.parse(res)
+			cb(user_name, res["certs"][user_name])
+
+	searchAuthAddress: (search_auth_address, cb) ->
+		@setStatusTitle "Searching auth_address: #{search_auth_address}"
+		found = 0
+		found_cert = false
+		pending_request = 0
+		for user_name, cert of @users
+			if cert.startsWith("@")
+				[cert_file_id, auth_address_pre] = cert.replace("@", "").split(",")
+				if search_auth_address.startsWith(auth_address_pre)
+					found += 1
+					cert_filename = "certs_#{cert_file_id}.json"
+					@setStatusTitle("Recovering certificate from #{cert_filename}...")
+					@log "Possible optional file cert: #{cert} #{user_name}"
+					pending_request += 1
+					@loadCert "data/#{cert_filename}", user_name, (user_name, cert) =>
+						pending_request -= 1
+						[auth_type, auth_address, cert_sign] = cert.split(",")
+						if auth_address == search_auth_address
+							found_cert = true
+							@log "Found valid cert: #{cert}"
+							cb(user_name, cert)
+						else
+							@log "Invalid cert: #{cert}"
+						if pending_request == 0
+							@log "Found cert: #{found_cert}"
+							if not found_cert
+								cb(false, false)
+			else
+				[auth_type, auth_address, cert_sign] = cert.split(",")
+				if auth_address == search_auth_address
+					@log "Cert found directly: #{cert}"
+					found += 1
+					cb(user_name, cert)
+		if found == 0
+			cb(false, false)
+
+
 	reloadUsers: ->
 		@setStatusTitle("Loading users data (1/2)...")
 		@cmd "fileGet", "data/users_archive.json", (res) =>
@@ -186,15 +229,14 @@ class ZeroID extends ZeroFrame
 				for user, data of JSON.parse(res)["users"]
 					@users[user] = data
 				gotauth = false
-				# Check if we has cert
-				for user_name, cert of @users
-					[auth_type, auth_address, cert_sign] = cert.split(",")
-					if auth_address == @auth_address
+				@searchAuthAddress @auth_address, (user_name, cert) =>
+					@setStatusTitle("")
+					if cert
+						[auth_type, auth_address, cert_sign] = cert.split(",")
 						@setCert(auth_type, user_name, cert_sign)
 						gotauth = true
-						break
-				if not gotauth
-					$(".panel-intro").addClass("noauth")
+					else
+						$(".panel-intro").addClass("noauth")
 
 
 
@@ -206,6 +248,7 @@ class ZeroID extends ZeroFrame
 			$(".ui").removeClass("flipped")
 			if res.error
 				@cmd "wrapperNotification", ["error", "#{res.error}"]
+
 
 
 window.Page = new ZeroID()
