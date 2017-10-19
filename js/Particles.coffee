@@ -11,12 +11,12 @@ class Particles
 		document.body.appendChild(@renderer.view)
 
 		@sprites = new PIXI.ParticleContainer(500, {
-    		scale: true,
-    		position: true,
-    		rotation: false,
-    		uvs: false,
-    		alpha: false
-    	})
+			scale: true,
+			position: true,
+			rotation: false,
+			uvs: false,
+			alpha: false
+		})
 		@container = new PIXI.Container()
 		@stage = new PIXI.Container()
 		@bg = null
@@ -224,9 +224,9 @@ init = ->
 	$(window).on "resize", particles.resize
 
 if window.innerHeight > 200
-	init()
-else # Not ready to init yet, delay with 20ms
 	setTimeout init, 20
+else # Not ready to init yet, delay with 100ms
+	setTimeout init, 100
 
 
 setInterval (->
