@@ -107,7 +107,7 @@ class ZeroID extends ZeroFrame
 		$(".username").attr("readonly", "true")
 		@setRequestPercent(10)
 
-		$.post "https://demo.zeronet.io/ZeroID/request.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "width": $(".ui h1").width() }, (res) =>
+		$.post "https://zeroid.qc.to/ZeroID/request.php", {"auth_address": @auth_address, "user_name": $(".username").val(), "width": $(".ui h1").width() }, (res) =>
 			@setRequestPercent(20)
 			if res[0] == "{" # Valid response, solve task
 				res = JSON.parse(res)
