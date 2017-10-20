@@ -183,15 +183,15 @@ class ZeroID extends ZeroFrame
 			res = JSON.parse(res)
 			cb(user_name, res["certs"][user_name])
 
-	searchAuthAddress: (search_auth_address, cb) ->
-		@setStatusTitle "Searching auth_address: #{search_auth_address}"
+	searchAuthAddress: (search, cb) ->
+		@setStatusTitle "Searching for : #{search}"
 		found = 0
 		found_cert = false
 		pending_request = 0
 		for user_name, cert of @users
 			if cert.startsWith("@")
 				[cert_file_id, auth_address_pre] = cert.replace("@", "").split(",")
-				if search_auth_address.startsWith(auth_address_pre)
+				if search.startsWith(auth_address_pre) or user_name == search
 					found += 1
 					cert_filename = "certs_#{cert_file_id}.json"
 					@setStatusTitle("Recovering certificate from #{cert_filename}...")
@@ -200,7 +200,7 @@ class ZeroID extends ZeroFrame
 					@loadCert "data/#{cert_filename}", user_name, (user_name, cert) =>
 						pending_request -= 1
 						[auth_type, auth_address, cert_sign] = cert.split(",")
-						if auth_address == search_auth_address
+						if auth_address == search or user_name == search
 							found_cert = true
 							@log "Found valid cert: #{cert}"
 							cb(user_name, cert)
@@ -212,7 +212,7 @@ class ZeroID extends ZeroFrame
 								cb(false, false)
 			else
 				[auth_type, auth_address, cert_sign] = cert.split(",")
-				if auth_address == search_auth_address
+				if auth_address == search or user_name == search
 					@log "Cert found directly: #{cert}"
 					found += 1
 					cb(user_name, cert)
