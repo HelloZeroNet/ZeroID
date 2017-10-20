@@ -80,9 +80,13 @@ class ZeroID extends ZeroFrame
 
 		$(".button-mute").on "click", =>
 			val = $(".search-username").val()
-			[auth_type, auth_address, cert_sign] = @users[val].split(",")
-			Page.cmd "muteAdd", [auth_address, val+"@zeroid.bit", ""], =>
-				Page.cmd "wrapperNotification", ["done", "User #{val}@zeroid.bit muted!"]
+			$(".search-username").addClass("loading")
+			@searchAuthAddress val, (user_name, cert) =>
+				$(".search-username").removeClass("loading")
+				[auth_type, auth_address, cert_sign] = cert.split(",")
+				@log "Muting", auth_address
+				Page.cmd "muteAdd", [auth_address, val+"@zeroid.bit", ""], =>
+					Page.cmd "wrapperNotification", ["done", "User #{val}@zeroid.bit muted!"]
 
 	# Route incoming requests
 	route: (cmd, message) ->
