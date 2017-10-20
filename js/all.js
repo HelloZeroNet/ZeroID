@@ -878,11 +878,17 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       })(this));
       return $(".button-mute").on("click", (function(_this) {
         return function() {
-          var auth_address, auth_type, cert_sign, ref, val;
+          var val;
           val = $(".search-username").val();
-          ref = _this.users[val].split(","), auth_type = ref[0], auth_address = ref[1], cert_sign = ref[2];
-          return Page.cmd("muteAdd", [auth_address, val + "@zeroid.bit", ""], function() {
-            return Page.cmd("wrapperNotification", ["done", "User " + val + "@zeroid.bit muted!"]);
+          $(".search-username").addClass("loading");
+          return _this.searchAuthAddress(val, function(user_name, cert) {
+            var auth_address, auth_type, cert_sign, ref;
+            $(".search-username").removeClass("loading");
+            ref = cert.split(","), auth_type = ref[0], auth_address = ref[1], cert_sign = ref[2];
+            _this.log("Muting", auth_address);
+            return Page.cmd("muteAdd", [auth_address, val + "@zeroid.bit", ""], function() {
+              return Page.cmd("wrapperNotification", ["done", "User " + val + "@zeroid.bit muted!"]);
+            });
           });
         };
       })(this));
@@ -1028,9 +1034,9 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
       })(this));
     };
 
-    ZeroID.prototype.searchAuthAddress = function(search_auth_address, cb) {
+    ZeroID.prototype.searchAuthAddress = function(search, cb) {
       var auth_address, auth_address_pre, auth_type, cert, cert_file_id, cert_filename, cert_sign, found, found_cert, pending_request, ref, ref1, ref2, user_name;
-      this.setStatusTitle("Searching auth_address: " + search_auth_address);
+      this.setStatusTitle("Searching for : " + search);
       found = 0;
       found_cert = false;
       pending_request = 0;
@@ -1039,7 +1045,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
         cert = ref[user_name];
         if (cert.startsWith("@")) {
           ref1 = cert.replace("@", "").split(","), cert_file_id = ref1[0], auth_address_pre = ref1[1];
-          if (search_auth_address.startsWith(auth_address_pre)) {
+          if (search.startsWith(auth_address_pre) || user_name === search) {
             found += 1;
             cert_filename = "certs_" + cert_file_id + ".json";
             this.setStatusTitle("Recovering certificate from " + cert_filename + "...");
@@ -1050,7 +1056,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
                 var auth_address, auth_type, cert_sign, ref2;
                 pending_request -= 1;
                 ref2 = cert.split(","), auth_type = ref2[0], auth_address = ref2[1], cert_sign = ref2[2];
-                if (auth_address === search_auth_address) {
+                if (auth_address === search || user_name === search) {
                   found_cert = true;
                   _this.log("Found valid cert: " + cert);
                   cb(user_name, cert);
@@ -1068,7 +1074,7 @@ FilterGaussianX.prototype.constructor = FilterGaussianX;
           }
         } else {
           ref2 = cert.split(","), auth_type = ref2[0], auth_address = ref2[1], cert_sign = ref2[2];
-          if (auth_address === search_auth_address) {
+          if (auth_address === search || user_name === search) {
             this.log("Cert found directly: " + cert);
             found += 1;
             cb(user_name, cert);

@@ -33,7 +33,7 @@ input.text:focus, textarea:focus { border-color: #5FC0EA; outline: none; backgro
 
 .ui {
 	position: absolute; width: 500px; max-width: 100%; top: 50%; left: 50%; z-index: 999; transform: translatex(-50%) translatey(-50%);
-	text-align: center; perspective: 500px; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+	text-align: center; perspective: 500px; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1); display: none;
 }
 .ui.flipped .panel-front { transform: rotateY(180deg) }
 .ui.flipped .panel-back { transform: rotateY(0deg) }
@@ -53,7 +53,7 @@ input.text:focus, textarea:focus { border-color: #5FC0EA; outline: none; backgro
 .panel-intro.gotauth .text-gotauth { height: auto; opacity: 1; pointer-events: auto }
 .panel-intro .text-gotauth h3 { opacity: 1 }
 .panel-intro .current-auth {
-	display: inline-block; background-color: FFDC00; color: rgba(142, 87, 5, 0.8); padding: 4px 8px;
+	display: inline-block; background-color: #FFDC00; color: rgba(142, 87, 5, 0.8); padding: 4px 8px;
 	font-size: 15px; font-weight: bold; min-width: 293px; opacity: 1; margin: 0px; margin-top: 30px;
 }
 .panel-intro .current-auth b { color: #8E5705 }

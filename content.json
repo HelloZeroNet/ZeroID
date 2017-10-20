@@ -5,52 +5,68 @@
  "domain": "zeroid.bit",
  "files": {
   "css/all.css": {
-   "sha512": "22d9e58f937f79009be1347ff6340979f9e58df9d3e8ecf39870629176ca8caa",
-   "size": 74396
+   "sha512": "93aa57e653f9394c3487e65d4b9d15d1ac406be78a2f7ae560b7638956e0eb9f",
+   "size": 76046
   },
   "data/archive.py": {
    "sha512": "ad0818adfe413ade28e9a712f841fec70170e901bdecde9290cbc1a5abcac8b7",
    "size": 309
   },
+  "data/split.py": {
+   "sha512": "48754e1cc1d22603ac03b717ab2e6ad7358a290ffbeea191c35084868c1db8ed",
+   "size": 1036
+  },
   "data/users.json": {
-   "sha512": "536eee6c858d6ed81f1d8d2409a28a35dce9e78e453fdbde97bfd8c0c6fc0cc4",
-   "size": 494482
+   "sha512": "b24e115973fe0e2d58c273c01e7de70b1bcde62f6fb0005d8ef1394e43dae32e",
+   "size": 1448375
   },
   "data/users_archive.json": {
-   "sha512": "3e4aa54bff46e3dc24e9aee649c18ec9dd6f6f0510cf4317387ffadca1f7d4a6",
-   "size": 3864871
+   "sha512": "f628c018ae817c65bc6c7210272684feda9fad086a68e88bf5de1b5a644009cf",
+   "size": 7508090
   },
   "img/loading.gif": {
    "sha512": "8a42b98962faea74618113166886be488c09dad10ca47fe97005edc5fb40cc00",
    "size": 723
   },
   "index.html": {
-   "sha512": "18b0f83c8335554c576ebfb62d7104764843b9d44095d4d5761daed6a398989a",
-   "size": 1727
+   "sha512": "88c6482b2e9892ff6a58d3665c286405a0f7390f1752e5a3b316c3491234a0cb",
+   "size": 2510
   },
   "js/all.js": {
-   "sha512": "068c821eaae9900cf92694c0a1ddf9f0b58c8a9b19976aa1a6a9daf2bd845987",
-   "size": 388203
+   "sha512": "f5391e409b22906b417b56f498fff73aadce910192a5d5137df5233b32be1b1f",
+   "size": 394697
+  },
+  "languages/es.json": {
+   "sha512": "3f285252ed82cc46e313af6b41d31c7d6a1938785518806cd40dcffc0d2660d5",
+   "size": 1439
+  },
+  "languages/fr.json": {
+   "sha512": "39e2c4e6d16f9b6e68aa08482b7126228e703a75c014ab0832fcfead85c62cee",
+   "size": 1097
+  },
+  "languages/pl.json": {
+   "sha512": "fbac31c75233b65c40ed8d3343046fb62296275b7ac01d80cfdccd059026b36f",
+   "size": 1464
   },
   "languages/zh-tw.json": {
-   "sha512": "c620b45c1fedf57ce941f4e546c27106492b9e5e1b088c48c579d5d0fd49c7a1",
-   "size": 945
+   "sha512": "e6d70ab3c2a21b7e2e500998bffedd0bbc16524dcb0fad760cddf5e22bd58839",
+   "size": 1228
   },
   "languages/zh.json": {
-   "sha512": "fb3187905d5dd6fe2eb7575df64bcf28f27a75472535a80ca899d70974c7aa23",
-   "size": 930
+   "sha512": "7c5bbff8f7e956a348b407b1f348458acebc24ab66022b57dd72170a194fa337",
+   "size": 1207
   }
  },
  "ignore": "(js|css)/(?!all.(js|css))",
  "inner_path": "content.json",
- "modified": 1481557203.805,
+ "modified": 1508503010.327546,
  "sign": [
-  90561218351576159580306725273880108330131465938426857708383952879664581277256,
-  38557124276684260902694232127972868930377687270809194157258356602157745268523
+  101199911478526126720849558441160666027669076109919078476414464852223156093050,
+  70223905571117933306548422213554351213013576527943921768613677636011914681824
  ],
  "signers_sign": "G7d9tTFjHbptCSR/TDr2mA1OILLhWMtVGvKZcLIwW56ut0V+kPDgrivp+hZ7/C9IUOQ6dQzVVHKJK5XBSqm+QPw=",
  "signs": {
-  "1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz": "HCZ/w/u6qYqYiJKHM/AaJLYziCY/pBuNb+2Uy1edDoZz3bCZ3kPJcB73yRIg4wynXLl6cmFLdzlFpb3pczqlqwA="
+  "1iD5ZQJMNXu43w1qLB8sfdHVKppVMduGz": "HENJoF2tboD4M/pMoo30t8MLsl+erUm2rMZ3IG2TM+XIohy0wgCFCbNJCS7SejJbZCRZCfTHM5VU6YNlrrUrENA="
  },
  "signs_required": 1,
  "title": "ZeroID",
@@ -59,5 +75,5 @@
   "index.html"
  ],
  "viewport": "width=device-width, initial-scale=1.0",
- "zeronet_version": "0.5.1"
+ "zeronet_version": "0.3.7"
 }

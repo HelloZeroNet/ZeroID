@@ -1,8 +1,11 @@
-<html>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
- <link rel="stylesheet" href="css/all.css">
  <title>ZeroID</title>
+ <link rel="stylesheet" href="css/all.css" type="text/css">
 </head>
+
 <body>
 
 <div class="ui ui-register">
@@ -28,7 +31,7 @@
  <!-- Registration input panel -->
  <div class="panel panel-input panel-back">
   <h1>Request&#8196;auth&#8196;cert</h1>
-  <h2>Username:<input type="text" class="text username" placeholder="zeronetuser" maxlength=16><div class='username-status'><span class='title'></span><span class='dot'>&bullet;</span></div></h2>
+  <h2>Username:<input type="text" class="text username" placeholder="zeronetuser" maxlength=16/><div class='username-status'><span class='title'></span><span class='dot'>&bullet;</span></div></h2>
 
   <div class="send-bitmessage">
    <h4>
@@ -60,6 +63,10 @@
 
 </div>
 
+<style id="style"></style>
+<script>
+setTimeout( function() { document.getElementById("style").innerText = ".ui { display: inherit }" }, 20)
+</script>
 <script type="text/javascript" src="js/all.js?lang={lang}"></script>
 </body>
 </html>
