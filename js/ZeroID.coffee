@@ -167,6 +167,8 @@ class ZeroID extends ZeroFrame
 	setStatusTitle: (status_title) ->
 		if @status_timer then clearInterval(@status_timer)
 		elem = $(".status-title")
+		if status_title == elem.text()
+			return
 		@log "Status: #{status_title}"
 		if status_title == ""
 			elem.css("display", "none")
