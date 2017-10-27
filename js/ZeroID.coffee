@@ -80,9 +80,9 @@ class ZeroID extends ZeroFrame
 
 		$(".button-mute").on "click", =>
 			val = $(".search-username").val()
-			$(".search-username").addClass("loading")
+			$(".button-mute").addClass("loading")
 			@searchAuthAddress val, (user_name, cert) =>
-				$(".search-username").removeClass("loading")
+				$(".button-mute").removeClass("loading")
 				[auth_type, auth_address, cert_sign] = cert.split(",")
 				@log "Muting", auth_address
 				Page.cmd "muteAdd", [auth_address, val+"@zeroid.bit", ""], =>
