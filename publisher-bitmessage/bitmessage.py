@@ -61,7 +61,7 @@ for message in json.loads(res)["inboxMessages"]:
 			continue
 
 		auth_address = re.sub("[^A-Za-z0-9]", "", auth_address)
-		user_name = re.sub("[^A-Za-z0-9]", "", user_name)
+		user_name = re.sub("[^a-z0-9]", "", user_name)
 
 		log("New user: %s %s" % (auth_address, user_name))
 		if "slave" in sys.argv:
