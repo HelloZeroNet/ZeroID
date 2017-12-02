@@ -79,12 +79,15 @@ if ($sign{strlen($sign)-1} != "=") logdie("User sign error, please contact site 
 
 
 logtext("Adding to users...");
-$data->users->{$user_name} = "web,$auth_address,$sign";
+$data = json_decode(file_get_contents($users_json), true);
+$data["users"][$user_name] = "web,$auth_address,$sign";
+ksort($data["users"]);
 $json_out = json_encode($data, JSON_PRETTY_PRINT);
 
-$f = fopen($users_json, "w");
+$f = fopen($users_json."-new", "w");
 fwrite($f, $json_out);
 fclose($f);
+chmod($users_json."-new", 0666);
 
 
 logtext("Signing...");
