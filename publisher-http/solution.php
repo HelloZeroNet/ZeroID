@@ -33,24 +33,20 @@ if (!preg_match("#^[A-Za-z0-9]{1,40}$#", $auth_address)) {
 
 
 logtext("Loading archive users...");
-$data = json_decode(file_get_contents($users_archive_json));
-
-foreach ($data->users as $data_user_name => $data_cert) {
-	if (strtolower($data_user_name) == strtolower($user_name)) {
-		header("HTTP/1.0 400 Bad Request");
-		logdie("Username $user_name already exits.");
-	}
-	if (strpos($data_cert, ",".$auth_address.",") !== false) {
-		header("HTTP/1.0 400 Bad Request");
-		logdie("Address $auth_address already exits.");
+$users = array();
+foreach (glob(dirname($users_json) . "/*json") as $data_file_path) {
+	$json_root = json_decode(file_get_contents($data_file_path), true);
+	if (isset($json_root["users"]))
+		$data = $json_root["users"];
+	else
+		$data = $json_root["certs"];
+	foreach ($data as $data_user_name => $data_cert) {
+		if (!isset($users[$data_user_name]) or $users[$data_user_name]{0} == "@")
+			$users[$data_user_name] = $data_cert;
 	}
 }
 
-
-logtext("Loading users...");
-$data = json_decode(file_get_contents($users_json));
-
-foreach ($data->users as $data_user_name => $data_cert) {
+foreach ($users as $data_user_name => $data_cert) {
 	if (strtolower($data_user_name) == strtolower($user_name)) {
 		header("HTTP/1.0 400 Bad Request");
 		logdie("Username $user_name already exits.");
