@@ -20,12 +20,12 @@ $_POST["work_id"] = 0+$_POST["work_id"];
 $auth_address = $_POST["auth_address"];
 $user_name = trim($_POST["user_name"], " ");
 
-if (!preg_match("#^[A-Za-z0-9]+$#", $user_name)) {
+if (!preg_match("#^[a-z0-9]{1,17}$#", $user_name)) {
 	header("HTTP/1.0 400 Bad Request");
 	logdie("Only english letters and numbers allowed in username.");
 }
 
-if (!preg_match("#^[A-Za-z0-9]+$#", $auth_address)) {
+if (!preg_match("#^[A-Za-z0-9]{1,40}$#", $auth_address)) {
 	header("HTTP/1.0 400 Bad Request");
 	logdie("Bad address.");
 }
