@@ -60,7 +60,7 @@ foreach ($users as $data_user_name => $data_cert) {
 
 logtext("Verify work...");
 $res = verifyWork($_POST["work_id"], $_POST["work_solution"]);
-if (!$res) {
+if (!$res or !$_POST["work_solution"]) {
 	header("HTTP/1.0 400 Bad Request");
 	logdie("Bad solution :(");
 }
