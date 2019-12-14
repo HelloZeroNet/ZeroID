@@ -1,0 +1,25 @@
+{
+	"Authorized for <b>...</b>": "مجاز به <b>...</b>",
+	"Now you can directly interact with every site,<br> that accepts zeroid.bit users!": "اکنون شما به صورت مستقیم قادر به تعامل با هر سایتی خواهید بود،<br> که کاربران zeroid.bit را می‌پذیرد!",
+	"This is a sample trusted authorization provider, that": "این یک نمونه ارائه‌دهنده مورد اطمینان مجوز است، که ",
+	" allows you to interact sites without contacting the owner.": " امکان تعامل با سایت‌ها را بدون تماس با صاحب آن، برای شما فراهم می‌کند.",
+	"Get auth cert &raquo;": "اخذ گواهی اعتبار &raquo;",
+	"Request&#8196;auth&#8196;cert": "درخواست&#8196;گواهی اعتبار&#8196;",
+	"Username:": "نام کاربری:",
+	"zeronetuser": "نام کاربری ZeroNet",
+	"taken": "گرفته‌شده",
+	"To address:": "به آدرس:",
+	"Send message:": "پیام بفرست:",
+	"Enter username you want to register": "نام کاربری را که میخواهید ثبت کنید، وارد نمایید ",
+	"&laquo; use direct messaging": "&laquo; از پیام‌دهی مستقیم استفاده کن",
+	"Send request": "درخواست بفرست",
+	"or use BitMessage &raquo;": "یا از Bitmessage استفاده کنید &raquo;",
+
+	"Search in user database...": "جستجو  در پایگاه داده کاربران...",
+	"&laquo; Back to registration": "&laquo; برگشت به ثبت‌نام",
+	"Search user...": "جستجوی کاربر...",
+	"found": "پیدا شد",
+	"not found": "پیدا نشد",
+	"Mute user": "کابر را بی‌صدا کن",
+	"User \" + val + \"@zeroid.bit muted!": "کاربر \" + val + \"@zeroid.bit بی‌صدا شد!"
+}
