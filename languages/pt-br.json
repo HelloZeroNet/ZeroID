@@ -1,4 +1,5 @@
-"Authorized for <b>...</b>": "Autorizado para <b>...</b>",
+{
+	"Authorized for <b>...</b>": "Autorizado para <b>...</b>",
 	"Now you can directly interact with every site,<br> that accepts zeroid.bit users!": "Agora você pode interagir diretamente com qualquer site,<br> que aceita usuários zeroid.bit!",
 	"This is a sample trusted authorization provider, that": "Esta é uma amostra de confiança autorizada pelo fornecedor, que",
 	" allows you to interact sites without contacting the owner.": " permite que você interaja com sites sem precisar entrar em contato com o proprietário",
@@ -21,3 +22,4 @@
 	"not found": "não encontrado",
 	"Mute user": "Silenciar usuário",
 	"User \" + val + \"@zeroid.bit muted!": "Usuário \" + val + \"@zeroid.bit silenciado!"
+}
