@@ -4,7 +4,7 @@
 	"This is a sample trusted authorization provider, that": "این یک نمونه ارائه‌دهنده مورد اطمینان مجوز است، که ",
 	" allows you to interact sites without contacting the owner.": " امکان تعامل با سایت‌ها را بدون تماس با صاحب آن، برای شما فراهم می‌کند.",
 	"Get auth cert &raquo;": "اخذ گواهی اعتبار &raquo;",
-	"Request&#8196;auth&#8196;cert": "درخواست&#8196;گواهی اعتبار&#8196;",
+	"Request&#8196;auth&#8196;cert": "درخواست گواهی اعتبار",
 	"Username:": "نام کاربری:",
 	"zeronetuser": "نام کاربری ZeroNet",
 	"taken": "گرفته‌شده",
