@@ -3,6 +3,7 @@
  "background-color": "#3F51B5",
  "description": "Sample trusted authorization provider",
  "domain": "zeroid.bit",
+ "favicon": "favicon.png",
  "files": {
   "css/all.css": {
    "sha512": "93aa57e653f9394c3487e65d4b9d15d1ac406be78a2f7ae560b7638956e0eb9f",
